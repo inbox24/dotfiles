@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment=WeChat Universal
+TryExec=/usr/lib/wechat-universal/start.sh
+Exec=/usr/lib/wechat-universal/start.sh %u
+Icon=wechat-universal
+Name=WeChat (Universal)
+Categories=Network;InstantMessaging;Chat;
+Terminal=false
+Type=Application
+Keywords=wechat;weixin;we;w;
+StartupWMClass=wechat
+X-GNOME-SingleWindow=true
+SingleMainWindow=true
+Actions=quit;
+X-XFCE-Source=file:///usr/share/applications/wechat-universal.desktop
+
+[Desktop Action quit]
+Name=Quit WeChat
+Exec=/usr/lib/wechat-universal/stop.sh
+Icon=application-exit

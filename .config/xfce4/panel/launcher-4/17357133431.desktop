@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=WasIstLos
+GenericName=Unofficial WhatsApp client
+Comment=An unofficial WhatsApp desktop application for Linux
+Exec=wasistlos %u
+Icon=com.github.xeco23.WasIstLos
+MimeType=x-scheme-handler/whatsapp
+StartupWMClass=wasistlos
+Categories=GTK;GNOME;Network;
+Keywords=chat;im;messaging;messenger;sms;whatsapp;whatsapp-desktop;
+X-XFCE-Source=file:///usr/share/applications/com.github.xeco23.WasIstLos.desktop
