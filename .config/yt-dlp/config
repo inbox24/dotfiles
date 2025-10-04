@@ -1,0 +1,80 @@
+# ===============================================
+# YT-DLP CONFIG: JELLYFIN ARCHIVE
+# Maximum quality for home media server
+# Usage: yt-dlp --config-location ~/.config/yt-dlp/config-jellyfin [URL]
+# ===============================================
+
+# Network and download settings
+--concurrent-fragments 8         # More fragments for faster 4K downloads
+--limit-rate 50M                 # Higher limit for archive quality
+--retries 5                      # More retries for large files
+--no-keep-fragments
+--external-downloader aria2c
+--external-downloader-args '-c -j 8 -x 8 -s 8 -k 1M --min-split-size=1M'
+
+# Progress and UI
+--newline
+--progress
+--console-title
+--verbose
+
+# Format selection - Prioritize quality and modern codecs
+# AV1 > VP9.2 (HDR) > VP9 > H265 > H264
+--format "(
+    bestvideo[vcodec^=av01][height<=2160][fps<=60]+bestaudio[acodec^=opus]/
+    bestvideo[vcodec^=av01][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=vp09.02][height<=2160][fps<=60]+bestaudio[acodec^=opus]/
+    bestvideo[vcodec^=vp9][height<=2160][fps<=60]+bestaudio[acodec^=opus]/
+    bestvideo[vcodec^=vp09][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=hev][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=hvc][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=h265][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=avc1][height<=2160][fps<=60]+bestaudio/
+    bestvideo[vcodec^=h264][height<=2160][fps<=60]+bestaudio/
+    bestvideo[height<=2160][fps<=60]+bestaudio/
+    best[height<=2160]/
+    best
+)"
+
+# Prefer higher bitrate when quality is similar
+--format-sort "codec,res,fps,br,asr"
+
+# Container format - MKV for maximum compatibility with codecs
+--merge-output-format mkv
+
+# Subtitle configuration - English only, saved as separate files
+--write-subs                    # Download manual subtitles
+--write-auto-subs               # Download auto-generated subtitles
+--sub-langs "en,en-US,en-GB,en-AU,en-CA"  # All English variants
+--no-embed-subs                 # Keep subtitles as separate files
+--convert-subs srt              # Convert to SRT for Jellyfin compatibility
+
+# Metadata and additional data
+--embed-metadata
+--embed-chapters
+--embed-info-json
+--sponsorblock-mark all         # Mark sponsor segments for Jellyfin
+--write-thumbnail               # Save thumbnail separately for Jellyfin
+--no-embed-thumbnail            # Don't embed in video
+
+# File management
+--continue
+--yes-playlist
+--no-overwrites                 # Protect existing archive files
+
+# Output paths and naming
+--paths /home/ben/Video/Jellyfin/
+--output "%(uploader)s/%(title)s [%(resolution)s %(vcodec)s].%(ext)s"
+
+# Create organized folder structure by uploader/channel
+--no-flat-playlist
+
+# Archive file to avoid re-downloads
+--download-archive ~/.config/yt-dlp/jellyfin-archive.txt
+
+# Keep original upload date in file timestamp
+--no-mtime
+
+# Quality settings
+--audio-quality 0               # Best audio quality
+--no-audio-multistreams        # Single audio track for compatibility

@@ -1,0 +1,82 @@
+# ===============================================
+# YT-DLP CONFIG: MOBILE CHINESE
+# Optimized for mobile sharing with Chinese subtitles
+# Usage: yt-dlp --config-location ~/.config/yt-dlp/config-mobile-zh [URL]
+# ===============================================
+
+# Network and download settings (smaller files)
+--concurrent-fragments 3
+--limit-rate 5M
+--retries 3
+--no-keep-fragments
+--external-downloader aria2c
+--external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M'
+
+# Progress and UI
+--newline
+--progress
+--console-title
+--quiet                         # Less verbose for simple downloads
+
+# Format selection - 480p limit with best quality at that res
+# Prefer H264 for compatibility, then H265 for size, then VP9
+--format "(
+    bestvideo[vcodec^=avc][height<=480]+bestaudio[acodec=m4a]/
+    bestvideo[vcodec^=h264][height<=480]+bestaudio[acodec=m4a]/
+    bestvideo[vcodec^=hev][height<=480]+bestaudio[acodec=m4a]/
+    bestvideo[vcodec^=h265][height<=480]+bestaudio[acodec=m4a]/
+    bestvideo[vcodec^=vp9][height<=480]+bestaudio[acodec=m4a]/
+    bestvideo[height<=480]+bestaudio/
+    best[height<=480]/
+    worst[height>=360]
+)"
+
+# Optimize for file size and compatibility
+--format-sort "res:480,codec:h264,br~1500,acodec:m4a"
+
+# Force MP4 container for universal compatibility
+--merge-output-format mp4
+
+# Subtitle configuration - Chinese priority with English fallback
+--write-subs                    # Download manual subtitles
+--write-auto-subs               # Download auto-generated subtitles
+--sub-langs "zh-CN,zh-Hans,zh-Hant,zh-TW,zh-HK,zh-SG,zh,en"  # Chinese first, English fallback
+
+# Auto-translate if Chinese not available
+--auto-subs-translate zh-CN     # Translate to Simplified Chinese
+
+# Embed subtitles into video file
+--embed-subs
+--convert-subs srt              # Convert to SRT before embedding
+
+# Post-processing to ensure MP4 compatibility
+--postprocessor-args "VideoConvertor:-c:v libx264 -preset medium -crf 28 -profile:v baseline -level 3.0 -c:a aac -b:a 96k -movflags +faststart"
+
+# The baseline profile ensures compatibility with older Android devices
+
+# Metadata (minimal for smaller files)
+--embed-metadata
+--no-embed-chapters             # Skip chapters to save space
+--no-embed-info-json            # Skip JSON to save space
+--no-embed-thumbnail            # Skip thumbnail to save space
+
+# File management
+--continue
+--yes-playlist
+--no-overwrites
+
+# Output paths and naming (simpler names for sharing)
+--paths /home/ben/Video/Mobile/
+--output "%(title).40s.%(ext)s"  # Truncate long titles to 40 chars
+
+# Restrict filenames for maximum compatibility
+--restrict-filenames            # ASCII-only filenames
+--windows-filenames            # Windows-compatible names
+
+# Archive file to track downloads
+--download-archive ~/.config/yt-dlp/mobile-archive.txt
+
+# Additional mobile optimizations
+--audio-quality 5              # Compressed audio (smaller file)
+--no-audio-multistreams       # Single audio track
+--max-filesize 100M           # Skip if final file would exceed 100MB

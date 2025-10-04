@@ -1,0 +1,37 @@
+--concurrent-fragments 5
+--limit-rate 10M
+--retries 3
+--no-keep-fragments
+--external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M'
+--newline
+--progress
+--console-title
+--verbose
+--no-check-certificates
+--write-sub
+--write-auto-subs
+--sub-lang "en.*"
+--embed-subs
+--yes-playlist
+#--embed-thumbnail
+#--write-thumbnail
+#--add-metadata
+--embed-metadata
+--embed-chapters
+--embed-subs
+#--write-info-json
+--embed-info-json
+--sponsorblock-mark all
+#--check-all-formats
+--continue
+--paths /home/ben/Video/
+#--format "bv*[height<=2160]+ba/b[height<=2160]"
+#--format "bv[codec=av1]+ba/b[codec=aac]"
+#-f "bestvideo[height<=2160][codec=av1]+bestaudio"
+-f "bestvideo[height<=2160][codec=av1]/bestvideo[height<=2160]+bestaudio" 
+-o "%(title)s.%(ext)s"
+ 
+
+
+--merge-output-format mp4
+
