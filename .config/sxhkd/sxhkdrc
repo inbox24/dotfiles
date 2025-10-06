@@ -1,0 +1,68 @@
+# Rofi app launcher
+super + space
+    rofi -show drun
+
+# Rofi window switcher
+alt + Tab
+    rofi -show window
+
+# Rofi run dialog
+alt + F2
+    rofi -show run
+
+# Terminal
+super + Return
+    kitty
+
+# Lock screen
+super + l
+    betterlockscreen -l
+
+# Screenshot
+Print
+    flameshot gui
+
+# Volume controls
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness (if laptop)
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+# Reload sxhkd config
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Switch directly to comms workspace
+super + 1
+    xdotool set_desktop 0
+
+# Switch directly to learn workspace  
+super + 2
+    xdotool set_desktop 1
+
+# Switch directly to entertainment workspace
+super + 3
+    xdotool set_desktop 2
+
+# Move current window to comms workspace
+super + shift + 1
+    xdotool set_desktop_for_window $(xdotool getactivewindow) 0
+
+# Move current window to learn workspace
+super + shift + 2
+    xdotool set_desktop_for_window $(xdotool getactivewindow) 1
+
+# Move current window to entertainment workspace
+super + shift + 3
+    xdotool set_desktop_for_window $(xdotool getactivewindow) 2

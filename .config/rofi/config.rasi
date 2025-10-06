@@ -1,0 +1,124 @@
+configuration {
+    modi: "drun,window,run";
+    show-icons: true;
+    icon-theme: "Papirus";
+    display-drun: "Apps";
+    display-window: "Windows";
+    display-run: "Run";
+    font: "SF Pro Mono 21";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+    filebrowser {
+        directories-first: true;
+        sorting-method: "name";
+    }
+}
+
+* {
+    background: #1a1a1a;
+    foreground: #ffffff;
+    border-color: #444444;
+    selected-bg: #3c3c3c;
+}
+window {
+    /* Anchor to bottom of screen */
+    location: south;
+    anchor: south;
+    
+    /* Sit just above your polybar - adjust this based on polybar height */
+    y-offset: -50px;
+    
+    /* Take up most of the width or adjust to preference */
+    width: 60%;
+    
+    /* Styling */
+    background-color: @background;
+    border: 2px solid;
+    border-color: @border-color;
+    border-radius: 0px;
+    padding: 0px;
+}
+
+mainbox {
+    /* List inputbar last so it appears at bottom */
+    children: [ message, listview, inputbar ];
+    background-color: @background;
+    spacing: 0px;
+}
+
+/* Input bar at the bottom */
+inputbar {
+    background-color: @background;
+    text-color: @foreground;
+    padding: 12px;
+    spacing: 8px;
+    children: [ prompt, entry ];
+    border: 0px 0px 2px 0px solid;
+    border-color: @border-color;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+entry {
+    background-color: transparent;
+    text-color: @foreground;
+    placeholder: "Search applications...";
+    placeholder-color: #888888;
+}
+
+/* Results list that expands upward */
+listview {
+    background-color: @background;
+    columns: 1;
+    lines: 8;
+    spacing: 0px;
+    padding: 8px;
+    scrollbar: false;
+}
+
+/* Individual result items */
+element {
+    background-color: transparent;
+    text-color: @foreground;
+    padding: 10px;
+    spacing: 10px;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    background-color: @selected-bg;
+    text-color: @foreground;
+}
+
+element-icon {
+    size: 1.5em;
+    background-color: transparent;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+/* Message box if needed */
+message {
+    background-color: @background;
+    border: 0px 0px 2px 0px solid;
+    border-color: @border-color;
+    padding: 12px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
