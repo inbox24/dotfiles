@@ -1,13 +1,9 @@
-# Rofi app launcher
-super + space
-    rofi -show drun
-
 # Rofi window switcher
 alt + Tab
     rofi -show window
 
 # Rofi run dialog
-alt + F2
+super + space 
     rofi -show run
 
 # Terminal
@@ -20,7 +16,7 @@ super + l
 
 # Screenshot
 Print
-    flameshot gui
+QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCREEN_SCALE_FACTORS="1;1" QT_FONT_DPI=96 flameshot gui
 
 # Volume controls
 XF86AudioRaiseVolume
