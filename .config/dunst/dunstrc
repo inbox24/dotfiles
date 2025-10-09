@@ -1,0 +1,96 @@
+[global]
+    # Font
+    font = SF Pro Display 16
+    
+    # Position: top-right (macOS style)
+    # Format: widthxheight-x_offset+y_offset
+    geometry = "360x5-15+50"
+    
+    # Rounded corners (macOS uses ~14-16)
+    corner_radius = 14
+    
+    # Padding (macOS is tight but readable)
+    padding = 12
+    horizontal_padding = 14
+    
+    # No border (we use transparency + blur instead)
+    frame_width = 0
+    
+    # Stack notifications downward
+    gap_size = 10
+    separator_height = 0
+    
+    # CRITICAL: More transparency for blur effect to show through
+    # macOS notifications are around 20-30% transparent
+    transparency = 25
+    
+    # Shrink notifications to content
+    shrink = true
+    
+    # Icon settings
+    icon_position = left
+    max_icon_size = 48
+    min_icon_size = 32
+    icon_path = /home/ben/.local/share/icons/WhiteSur-dark
+    
+    # Behavior
+    ignore_newline = true
+    idle_threshold = 120
+    indicate_hidden = true
+    
+    # Mouse interactions (macOS-like)
+    mouse_left_click = do_action
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
+    
+    # Progress bar (for things like volume/brightness)
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 360
+    progress_bar_max_width = 360
+    
+    # Alignment
+    alignment = left
+    vertical_alignment = center
+    
+    # Show age of notification if older than show_age_threshold
+    show_age_threshold = 60
+    
+    # Sort messages by urgency
+    sort = yes
+    
+    # Word wrapping
+    word_wrap = yes
+
+# macOS-style notification colors (translucent backgrounds)
+[urgency_low]
+    background = "#1e1e2eE6"  # Added E6 for 90% opacity (allows blur through)
+    foreground = "#a6adc8"
+    timeout = 4
+    frame_color = "#1e1e2e00"  # Transparent frame
+
+[urgency_normal]
+    background = "#1e1e2eE6"  # Added E6 for 90% opacity
+    foreground = "#cdd6f4"
+    timeout = 6
+    frame_color = "#1e1e2e00"
+
+[urgency_critical]
+    background = "#1e1e2eF2"  # Added F2 for 95% opacity (more solid for urgent)
+    foreground = "#f38ba8"
+    timeout = 0
+    frame_color = "#f38ba820"  # Subtle red glow
+
+# Optional: App-specific rules (macOS-like behavior)
+[spotify]
+    appname = Spotify
+    timeout = 5
+    
+[volume]
+    summary = "Volume"
+    set_stack_tag = "volume"
+    
+[brightness]
+    summary = "Brightness"
+    set_stack_tag = "brightness"
