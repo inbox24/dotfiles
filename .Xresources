@@ -1,0 +1,13 @@
+! DPI Settings for 4K
+Xft.dpi: 144
+
+! Font rendering settings
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! Mouse Settings
+Xcursor.size: 48

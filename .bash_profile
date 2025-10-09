@@ -9,7 +9,8 @@ export VISUAL="$EDITOR"
 export BROWSER="firefox"
 export TERMINAL="kitty"
 export PAGER="less"
-
+export CLICOLOR=1
+export HISTCONTROL=ignoreboth
 export PYTHON_VIRTUALENV="$HOME/.virtualenvs"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"

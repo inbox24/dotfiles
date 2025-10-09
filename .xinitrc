@@ -47,9 +47,25 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     fi
 fi
 
-# ===== Phase 4: Start the Desktop Environment =====
-# Using exec replaces our shell with XFCE, making it the session leader
-# When XFCE exits, the entire X session terminates cleanly
 
-echo "Starting XFCE Desktop Environment..." >&2
-exec startxfce4
+# ===== Phase 4: Monitor and Display Configuration =====
+# Configure monitors (27" left, 32" right)
+xrandr --output HDMI-0 --mode 3840x2160 --pos 0x0 --scale 1x1
+xrandr --output DP-0 --mode 3840x2160 --pos 3840x0 --scale 1x1 --primary
+
+# Set DPI for 4K
+xrandr --dpi 144
+echo "Xft.dpi: 144" | xrdb -merge
+
+# Tell systemd that graphical session is ready (for redshift service)
+systemctl --user import-environment DISPLAY XAUTHORITY
+systemctl --user start graphical-session.target
+
+export GTK_THEME=Adwait-dark
+
+picom -b &
+sxhkd &
+dunst &
+udiskie --tray &
+/home/ben/.config/polybar/launch.sh &
+exec openbox-session
