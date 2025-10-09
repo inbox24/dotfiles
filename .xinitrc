@@ -61,7 +61,6 @@ echo "Xft.dpi: 144" | xrdb -merge
 systemctl --user import-environment DISPLAY XAUTHORITY
 systemctl --user start graphical-session.target
 
-export GTK_THEME=Adwait-dark
 
 picom -b &
 sxhkd &

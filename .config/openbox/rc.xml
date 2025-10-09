@@ -25,7 +25,7 @@
 </placement>
 
 <theme>
-  <name>Clearlooks</name>
+  <name>Whitesur-Dark</name>
   <titleLayout>NLIMC</titleLayout>
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
@@ -505,7 +505,7 @@
 <applications>
   <!-- Remove decorations from all windows -->
   <application class="*">
-    <decor>no</decor>
+    <decor>yes</decor>
   </application>
   <!-- Firefox to workspace 1 -->
   <application class="firefox">
