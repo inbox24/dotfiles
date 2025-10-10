@@ -1,15 +1,17 @@
 configuration {
     modi: "drun,window,run";
     show-icons: true;
-    icon-theme: "Papirus";
-    display-drun: "Apps";
-    display-window: "Windows";
-    display-run: "Run";
-    font: "SF Pro Mono 21";
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
+    icon-theme: "WhiteSur";
+    display-drun: "";
+    display-window: "";
+    display-run: "";
+    font: "IBM Plex Sans 21";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+    timeout {
+        action: "kb-cancel";
+        delay: 0;
+    }
     filebrowser {
         directories-first: true;
         sorting-method: "name";
@@ -17,108 +19,109 @@ configuration {
 }
 
 * {
-    background: #1a1a1a;
-    foreground: #ffffff;
-    border-color: #444444;
-    selected-bg: #3c3c3c;
+    /* macOS-style colors */
+    bg0: #f0f0f0dd;
+    bg1: #ffffff;
+    bg2: #e5e5e5;
+    fg0: #2c2c2e;
+    fg1: #636366;
+    accent: #007aff;
+    
+    background-color: transparent;
+    text-color: @fg0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
 }
+
 window {
-    /* Anchor to bottom of screen */
-    location: south;
-    anchor: south;
+    /* Center like Spotlight */
+    location: center;
+    anchor: center;
     
-    /* Sit just above your polybar - adjust this based on polybar height */
-    y-offset: -50px;
+    /* Size similar to Spotlight */
+    width: 680px;
+    height: 500px;
     
-    /* Take up most of the width or adjust to preference */
-    width: 60%;
+    /* macOS-style appearance */
+    background-color: @bg0;
+    border-radius: 12px;
     
-    /* Styling */
-    background-color: @background;
-    border: 2px solid;
-    border-color: @border-color;
-    border-radius: 0px;
-    padding: 0px;
+    /* Subtle border */
+    border: 1px;
+    border-color: #00000015;
 }
 
 mainbox {
-    /* List inputbar last so it appears at bottom */
-    children: [ message, listview, inputbar ];
-    background-color: @background;
-    spacing: 0px;
-}
-
-/* Input bar at the bottom */
-inputbar {
-    background-color: @background;
-    text-color: @foreground;
-    padding: 12px;
-    spacing: 8px;
-    children: [ prompt, entry ];
-    border: 0px 0px 2px 0px solid;
-    border-color: @border-color;
-}
-
-prompt {
+    children: [ inputbar, listview ];
     background-color: transparent;
-    text-color: @foreground;
+    padding: 20px;
+    spacing: 20px;
+}
+
+inputbar {
+    children: [ icon-search, entry ];
+    background-color: @bg1;
+    text-color: @fg0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    spacing: 12px;
+}
+
+icon-search {
+    expand: false;
+    filename: "search-symbolic";
+    size: 20px;
+    text-color: @fg1;
 }
 
 entry {
     background-color: transparent;
-    text-color: @foreground;
-    placeholder: "Search applications...";
-    placeholder-color: #888888;
+    text-color: @fg0;
+    placeholder: "Spotlight Search";
+    placeholder-color: @fg1;
+    font: "IBM Plex Sans 21";
 }
 
-/* Results list that expands upward */
 listview {
-    background-color: @background;
+    background-color: transparent;
     columns: 1;
-    lines: 8;
-    spacing: 0px;
-    padding: 8px;
+    lines: 6;
+    spacing: 8px;
     scrollbar: false;
+    fixed-height: false;
+    dynamic: true;
 }
 
-/* Individual result items */
 element {
     background-color: transparent;
-    text-color: @foreground;
-    padding: 10px;
-    spacing: 10px;
+    text-color: @fg0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    spacing: 12px;
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
 }
 
-element normal.normal {
+element normal {
     background-color: transparent;
-    text-color: @foreground;
 }
 
-element selected.normal {
-    background-color: @selected-bg;
-    text-color: @foreground;
+element selected {
+    background-color: @accent;
+    text-color: @bg1;
 }
 
 element-icon {
-    size: 1.5em;
     background-color: transparent;
+    size: 32px;
+    cursor: inherit;
 }
 
 element-text {
     background-color: transparent;
     text-color: inherit;
+    vertical-align: 0.5;
+    highlight: inherit;
+    cursor: inherit;
 }
-
-/* Message box if needed */
-message {
-    background-color: @background;
-    border: 0px 0px 2px 0px solid;
-    border-color: @border-color;
-    padding: 12px;
-}
-
-textbox {
-    background-color: transparent;
-    text-color: @foreground;
-}
-
