@@ -1,6 +1,6 @@
 [global]
     # Font
-    font = SF Pro Display 16
+    font = IBM Plex Sans 16
     
     # Position: top-right (macOS style)
     # Format: widthxheight-x_offset+y_offset
