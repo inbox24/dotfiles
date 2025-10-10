@@ -25,7 +25,7 @@
 </placement>
 
 <theme>
-  <name>Whitesur-Dark</name>
+  <name>Arc-Dark-OSX</name>
   <titleLayout>NLIMC</titleLayout>
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
@@ -37,31 +37,31 @@
   </font>
   <font place="InactiveWindow">
     <name>Sans</name>
-    <size>10</size>
+    <size>16</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuHeader">
     <name>Sans</name>
-    <size>10</size>
+    <size>16</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuItem">
     <name>Sans</name>
-    <size>10</size>
+    <size>14</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="ActiveOnScreenDisplay">
     <name>Sans</name>
-    <size>10</size>
+    <size>16</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="InactiveOnScreenDisplay">
     <name>Sans</name>
-    <size>10</size>
+    <size>16</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
