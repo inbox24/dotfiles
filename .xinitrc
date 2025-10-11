@@ -61,6 +61,8 @@ echo "Xft.dpi: 144" | xrdb -merge
 systemctl --user import-environment DISPLAY XAUTHORITY
 systemctl --user start graphical-session.target
 
+gsettings set org.gnome.desktop.interface gtk-theme 'WhiteSur-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Whitesur-icons-dark'
 
 picom -b &
 sxhkd &
