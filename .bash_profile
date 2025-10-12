@@ -22,16 +22,12 @@ export LANG="en_AU.UTF-8"
 export LC_ALL="en_AU.UTF-8"
 export LANGUAGE="en_AU:en"
 
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-
-#export LIBVA_DRIVER_NAME=nvidia
+export LIBVA_DRIVER_NAME=nvidia
 export NVD_BACKEND=direct
 export MOZ_X11_EGL=1
 export MOZ_DISABLE_RDD_SANDBOX=1
 
-export FILE_MANAGER="pcmanfm" 
+export FILE_MANAGER="thunar" 
 export IMAGE_VIEWER="feh" 
 export PDF_VIEWER="mupdf"
 export VIDEO_PLAYER="mpv"

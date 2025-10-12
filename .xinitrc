@@ -63,8 +63,25 @@ systemctl --user start graphical-session.target
 
 gsettings set org.gnome.desktop.interface gtk-theme 'WhiteSur-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Whitesur-icons-dark'
+
 export XCURSOR_THEME=macos-cursor
 export XCURSOR_SIZE=48
+
+export QT_QPA_PLATFORMTHEME=gtk2
+export QT_STYLE_OVERRIDE=gtk2
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export INPUT_METHOD=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus  # Some apps need this set to ibus even when using fcitx
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_FONT_DPI=120
+# Start Fcitx5 in the background
+fcitx5 -d &
+
 picom -b &
 sxhkd &
 dunst &
