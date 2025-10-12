@@ -10,4 +10,5 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 ! Mouse Settings
+Xcursor.theme: macos-cursor
 Xcursor.size: 48

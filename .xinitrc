@@ -63,7 +63,8 @@ systemctl --user start graphical-session.target
 
 gsettings set org.gnome.desktop.interface gtk-theme 'WhiteSur-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Whitesur-icons-dark'
-
+export XCURSOR_THEME=macos-cursor
+export XCURSOR_SIZE=48
 picom -b &
 sxhkd &
 dunst &
