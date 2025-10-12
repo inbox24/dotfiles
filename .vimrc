@@ -6,7 +6,7 @@ set cursorline
 set showcmd
 set incsearch
 set smartcase
-set syntax=on
+syntax on
 set autoread
 set mouse=a
 set clipboard=unnamedplus
