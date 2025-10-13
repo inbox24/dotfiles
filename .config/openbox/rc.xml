@@ -31,37 +31,37 @@
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
     <name>Sans</name>
-    <size>10</size>
+    <size>15</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="InactiveWindow">
     <name>Sans</name>
-    <size>16</size>
+    <size>15</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuHeader">
     <name>Sans</name>
-    <size>16</size>
+    <size>15</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuItem">
     <name>Sans</name>
-    <size>14</size>
+    <size>15</size>
     <weight>normal</weight>
     <slant>normal</slant>
   </font>
   <font place="ActiveOnScreenDisplay">
     <name>Sans</name>
-    <size>16</size>
+    <size>15</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="InactiveOnScreenDisplay">
     <name>Sans</name>
-    <size>16</size>
+    <size>15</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
@@ -231,14 +231,14 @@
   <!-- Terminal -->
   <keybind key="W-t">
     <action name="Execute">
-      <command>kitty</command>
+      <command>alacritty</command>
     </action>
   </keybind>
 
   <!-- File manager -->
   <keybind key="W-e">
     <action name="Execute">
-      <command>pcmanfm</command>
+      <command>yazi</command>
     </action>
   </keybind>
 </keyboard>
@@ -543,7 +543,7 @@
   </application>
   
   <!-- Kitty to workspace 1 -->
-  <application class="kitty">
+  <application class="alacritty">
     <desktop>1</desktop>
   </application>
 </applications>
