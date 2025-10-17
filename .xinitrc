@@ -54,15 +54,15 @@ xrandr --output HDMI-0 --mode 3840x2160 --pos 0x0 --scale 1x1
 xrandr --output DP-0 --mode 3840x2160 --pos 3840x0 --scale 1x1 --primary
 
 # Set DPI for 4K
-xrandr --dpi 144
-echo "Xft.dpi: 144" | xrdb -merge
+xrandr --dpi 120
+echo "Xft.dpi: 120" | xrdb -merge
 
 # Tell systemd that graphical session is ready (for redshift service)
 systemctl --user import-environment DISPLAY XAUTHORITY
 systemctl --user start graphical-session.target
 
-gsettings set org.gnome.desktop.interface gtk-theme 'WhiteSur-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Whitesur-icons-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-OSX'
+gsettings set org.gnome.desktop.interface icon-theme 'WHITESURICONS-dark'
 
 export XCURSOR_THEME=macos-cursor
 export XCURSOR_SIZE=48
