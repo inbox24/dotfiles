@@ -61,7 +61,7 @@ echo "Xft.dpi: 120" | xrdb -merge
 systemctl --user import-environment DISPLAY XAUTHORITY
 systemctl --user start graphical-session.target
 
-gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-OSX'
+gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-openbox'
 gsettings set org.gnome.desktop.interface icon-theme 'WHITESURICONS-dark'
 
 export XCURSOR_THEME=macos-cursor
