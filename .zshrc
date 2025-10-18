@@ -19,8 +19,81 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000          # Lines of history to keep in memory
 SAVEHIST=10000          # Lines of history to save to file
 
-# Enable case-insensitive completion in zsh
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# Initialize the completion system
+# The -U flag prevents alias expansion during function loading
+autoload -U compinit
+
+# Only regenerate the completion dump file once per day for better performance
+# This checks if the dump file is older than 24 hours before regenerating
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C  # Skip security check for faster loading
+fi
+
+# Load bash completion compatibility for broader software support
+autoload -U bashcompinit
+bashcompinit
+
+# Enable menu selection interface - lets you navigate completions with arrow keys
+# This creates a visual menu instead of just cycling through options
+zstyle ':completion:*' menu select
+
+# Case-insensitive matching with smart behavior
+# m:{a-zA-Z} matches lowercase to uppercase and vice versa
+# r:|[._-] allows partial word completion at separators (useful for long filenames)
+# l:|=* anchors the match to the left side
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Group completions by category and add descriptions
+# This makes it clear what type of thing each completion is
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Add colors to completion menu (uses LS_COLORS if available)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Enhance completion matching with approximate matching
+# This allows minor typos - 1 error per 3 characters typed
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
+# Better directory completion
+# - Show directories first, then files
+# - Add trailing slash to directories automatically
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' squeeze-slashes true
+
+# Improve kill command completion
+# Shows process details and allows selection by process name or PID
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# Better SSH/SCP/RSYNC completion using known hosts
+zstyle ':completion:*:(ssh|scp|rsync):*' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# Enable caching for better performance with slow completions (like apt, yum)
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Load the completion module that handles menu selection key bindings
+zmodload zsh/complist
+
+# Include hidden files in completion (files starting with .)
+# This modifies the global completion behavior
+_comp_options+=(globdots)
+
+# Set custom key bindings for completion menu navigation
+# vi-style navigation in the completion menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Accept completion and continue completing (useful for paths)
+bindkey -M menuselect '^[[Z' reverse-menu-complete  # Shift-Tab for reverse
 
 # ===== Vi Mode Configuration =====
 
@@ -97,6 +170,16 @@ if [[ -f ~/.dircolors ]]; then
 else
     eval "$(dircolors -b)"
 fi
+
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-R
 
 # ===== Safety Aliases =====
 # Prevent accidentally destroying your system with rm, chmod, or chown on root
