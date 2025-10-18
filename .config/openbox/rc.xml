@@ -112,6 +112,27 @@
 <keyboard>
   <chainQuitKey>C-g</chainQuitKey>
 
+  <!-- Window cycling with visual feedback -->
+  <keybind key="A-Tab">
+    <action name="NextWindow">
+      <finalactions>
+        <action name="Focus"/>
+        <action name="Raise"/>
+        <action name="Unshade"/>
+      </finalactions>
+    </action>
+  </keybind>
+
+  <keybind key="A-S-Tab">
+    <action name="PreviousWindow">
+      <finalactions>
+        <action name="Focus"/>
+        <action name="Raise"/>
+        <action name="Unshade"/>
+      </finalactions>
+    </action>
+  </keybind>
+
   <!-- Window Tiling/Snapping -->
   <keybind key="W-Left">
     <action name="UnmaximizeFull"/>
@@ -225,9 +246,6 @@
     <action name="ToggleShowDesktop"/>
   </keybind>
 
-  <!-- Window switching (removed to avoid conflict with rofi) -->
-  <!-- Alt-Tab is handled by sxhkd/rofi -->
-
   <!-- Terminal -->
   <keybind key="W-t">
     <action name="Execute">
@@ -242,6 +260,23 @@
     </action>
   </keybind>
 </keyboard>
+
+<!-- Directional focus - move focus to window in specified direction -->
+  <keybind key="W-h">
+    <action name="DirectionalFocusWest"/>
+  </keybind>
+
+  <keybind key="W-j">
+    <action name="DirectionalFocusDown"/>
+  </keybind>
+
+  <keybind key="W-k">
+    <action name="DirectionalFocusUp"/>
+  </keybind>
+
+  <keybind key="W-l">
+    <action name="DirectionalFocusEast"/>
+  </keybind>
 
 <mouse>
   <dragThreshold>1</dragThreshold>
@@ -505,7 +540,7 @@
 <applications>
   <!-- Remove decorations from all windows -->
   <application class="*">
-    <decor>yes</decor>
+    <decor>no</decor>
   </application>
   <!-- Firefox to workspace 1 -->
   <application class="firefox">

@@ -1,5 +1,5 @@
 # Rofi window switcher
-alt + Tab
+super + Tab
     rofi -show window
 
 # Rofi run dialog
@@ -8,7 +8,11 @@ super + space
 
 # Terminal
 super + Return
-    kitty
+    alacritty 
+
+# Mozilla browser
+super + b
+    firefox
 
 # Lock screen
 super + l
@@ -62,3 +66,14 @@ super + shift + 2
 # Move current window to entertainment workspace
 super + shift + 3
     xdotool set_desktop_for_window $(xdotool getactivewindow) 2
+
+# Move window in focus to the other monitor in the same workspace
+super + shift + m
+    WIN_ID=$(xdotool getactivewindow); \
+    eval $(xdotool getwindowgeometry --shell $WIN_ID); \
+    MONITOR_WIDTH=$(xrandr | grep " connected" | head -1 | grep -oP '\d+(?=x)'); \
+    if [ $X -lt $MONITOR_WIDTH ]; then \
+        xdotool windowmove $WIN_ID $((MONITOR_WIDTH + 100)) 100; \
+    else \
+        xdotool windowmove $WIN_ID 100 100; \
+    fi
